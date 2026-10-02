@@ -7,7 +7,7 @@ Recriação do site [duettsoftware.com](https://www.duettsoftware.com/) com os m
 | A · Just in Time | `jit/` | A rolagem vira uma linha de produção: o símbolo da Duett se monta, vira a peça da esteira, passa pelas estações (com relógio JIT e HUD) e termina numa etiqueta impressa com o convite para a demonstração. |
 | B · Duas vozes | `duet/` | Editorial e claro. Indústria (serifa, foto) e software (sans, dados) lado a lado; capítulos com imagem fixa, projetos em trilho horizontal, metodologia em zigue-zague e "portas" que se fecham sobre o CTA. |
 | C · Blueprint | `blueprint/` | Tudo começa como desenho técnico: fotos viram traço (filtro de detecção de bordas) e são "renderizadas" com a rolagem; títulos em contorno ganham tinta; esquema de integração com pulsos de dados; Gantt da metodologia; prancha "aprovada" no CTA. |
-| D · Direto | `direto/` | Objetiva: rolagem normal, sem telas presas nem elementos decorativos. Serviços em cards com detalhes em abas, projetos, metodologia, sobre e contato em blocos; "Agendar demonstração" no topo e no fim. Sem GSAP/Lenis, só uma entrada suave com IntersectionObserver. |
+| D · Direto | `direto/` | Objetiva e na paleta do site original (azul #4146FF no topo, #090039, #06ECB7, #3699FF, #626F92 e tons claros). Rolagem normal, sem telas presas. Componentes inspirados no [React Bits](https://reactbits.dev), recriados em JS puro em `direto/fx.js`: Aurora (WebGL), BlurText, GradientText, ShinyText, StarBorder, Magnet, CountUp, LogoLoop, SpotlightCard/MagicBento, TiltedCard e ClickSpark. |
 
 `index.html` (raiz) é a página de escolha entre as versões.
 

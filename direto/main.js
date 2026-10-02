@@ -49,25 +49,36 @@
   '</div></header>' +
 
   '<main id="main">' +
-  '<section class="hero" id="top"><div class="wrap">' +
-    '<div><h1>' + c.hero.lines[0] + ' ' + c.hero.lines[1] + ' <em>' + c.hero.lines[2] + '</em> ' + c.hero.lines[3] + '</h1>' +
+  '<section class="hero" id="top"><canvas class="hero__aurora" aria-hidden="true"></canvas><div class="wrap">' +
+    '<div><span class="pill"><span class="pill__dot"></span><span class="shiny">SaaS · Cloud Computing</span></span>' +
+      '<h1 class="blur">' + fx.words(c.hero.lines[0] + ' ' + c.hero.lines[1] + ' <em>' + c.hero.lines[2] + '</em> ' + c.hero.lines[3]) + '</h1>' +
       '<p class="lead">' + c.hero.sub + '</p>' +
-      '<div class="ctas"><a class="btn btn--mint" href="' + D.mailto(c.help.demoSubject) + '">' + c.help.demo + kit.arrow + '</a>' +
+      '<div class="ctas"><a class="btn btn--star magnet" href="' + D.mailto(c.help.demoSubject) + '"><span class="star"></span><span class="btn__in">' + c.help.demo + kit.arrow + '</span></a>' +
       '<a class="btn btn--ghost" href="' + L.whatsapp + '" target="_blank" rel="noopener">' + c.help.whatsapp + '</a></div></div>' +
-    '<figure><img src="' + M.hero + '" alt="" fetchpriority="high"></figure>' +
+    '<div class="tilt hero__tilt"><figure class="tilt__in"><img src="' + M.hero + '" alt="" fetchpriority="high"><span class="glare" aria-hidden="true"></span>' +
+      '<figcaption class="float-chip"><b>' + c.projects.items[0].title + '</b><span>Just in Time (JIT)</span></figcaption></figure></div>' +
   '</div></section>' +
+
+  '<section class="stats" aria-label="Duett Software"><div class="wrap"><ul>' +
+    [[c.about.founded, D.lang === 'en' ? 'Founded' : 'Fundação', 1990],
+     [M.clients.length, D.lang === 'en' ? 'Clients & partners shown' : 'Clientes e parceiros em destaque', 0],
+     [M.tech.length, D.lang === 'en' ? 'Technologies in our stack' : 'Tecnologias no nosso stack', 0],
+     [c.method.steps.length, D.lang === 'en' ? 'Steps from idea to delivery' : 'Etapas da ideia à entrega', 0]].map(function (s) {
+      return '<li class="reveal spot"><b class="count" data-to="' + s[0] + '" data-from="' + s[2] + '">' + s[0] + '</b><span>' + s[1] + '</span></li>';
+    }).join('') +
+  '</ul></div></section>' +
 
   '<section class="clients" aria-label="' + esc(plain(c.clients.title)) + '"><div class="wrap">' +
     '<p>' + c.clients.text + '</p>' +
-    '<ul>' + M.clients.map(function (l) { return '<li><img src="' + l.src + '" alt="' + esc(l.name) + '" loading="lazy"></li>'; }).join('') + '</ul>' +
+    '<div class="loop"><div class="loop__track">' + M.clients.map(function (l) { return '<img src="' + l.src + '" alt="' + esc(l.name) + '" loading="lazy">'; }).join('') + '</div></div>' +
   '</div></section>' +
 
   '<section class="section" id="servicos"><div class="wrap">' +
     '<div class="head reveal"><div><span class="eyebrow">' + c.services.eyebrow + '</span><h2 class="h2">' + c.services.title + '</h2></div><p class="lead">' + c.services.text + '</p></div>' +
     '<div class="cards cards--services">' + c.services.items.map(function (s, i) {
-      return '<article class="card reveal"><span class="ic" aria-hidden="true">' + icons[i] + '</span><h3>' + s.title + '</h3><p>' + s.text + '</p></article>';
+      return '<article class="card spot reveal"><span class="ic" aria-hidden="true">' + icons[i] + '</span><h3>' + s.title + '</h3><p>' + s.text + '</p></article>';
     }).join('') +
-      '<article class="card reveal" style="background:var(--navy);border-color:var(--navy);color:#fff;justify-content:space-between"><h3 style="font-size:22px">' + c.services.banner + '</h3>' +
+      '<article class="card card--feature spot reveal"><h3>' + c.services.banner + '</h3>' +
       '<a class="btn btn--mint btn--sm" style="align-self:start" href="#contato">' + c.nav.contact + kit.arrow + '</a></article>' +
     '</div>' +
     '<div class="tabs reveal"><div role="tablist" aria-label="' + esc(c.services.eyebrow) + '">' +
@@ -80,19 +91,19 @@
   '<section class="section section--alt" id="projetos"><div class="wrap">' +
     '<div class="head reveal"><div><span class="eyebrow">' + c.projects.eyebrow + '</span><h2 class="h2">' + c.projects.title + '</h2></div></div>' +
     '<div class="projects">' + c.projects.items.map(function (p, i) {
-      return '<article class="project reveal"><figure><img src="' + M.projects[i][0] + '" alt="' + esc(p.title) + '" loading="lazy"></figure><div class="body"><h3>' + p.title + '</h3><p>' + p.text + '</p></div></article>';
+      return '<article class="project tilt reveal"><div class="tilt__in"><figure><img src="' + M.projects[i][0] + '" alt="' + esc(p.title) + '" loading="lazy"><span class="glare" aria-hidden="true"></span><span class="num">0' + (i + 1) + '</span></figure><div class="body"><h3>' + p.title + '</h3><p>' + p.text + '</p></div></div></article>';
     }).join('') + '</div>' +
   '</div></section>' +
 
   '<section class="section" id="metodologia"><div class="wrap">' +
     '<div class="head reveal"><div><span class="eyebrow">' + c.method.eyebrow + '</span><h2 class="h2">' + c.method.title + '</h2></div><p class="lead">' + c.method.text + '</p></div>' +
-    '<ol class="steps">' + c.method.steps.map(function (s) { return '<li class="reveal"><h3>' + s.title + '</h3><p>' + s.text + '</p></li>'; }).join('') + '</ol>' +
+    '<ol class="steps">' + c.method.steps.map(function (s) { return '<li class="spot reveal"><h3>' + s.title + '</h3><p>' + s.text + '</p></li>'; }).join('') + '</ol>' +
   '</div></section>' +
 
   '<section class="section section--alt" id="sobre"><div class="wrap">' +
     '<div class="about">' +
       '<div class="reveal"><span class="eyebrow">' + c.about.eyebrow + '</span><h2 class="h2" style="margin-bottom:20px">' + c.about.bannerTitle + '</h2>' +
-        '<div class="since"><b>' + c.about.founded + '</b><span>' + (D.lang === 'en' ? 'founded in Novo Hamburgo, RS' : 'fundada em Novo Hamburgo, RS') + '</span></div>' +
+        '<div class="since"><b class="count" data-to="' + c.about.founded + '" data-from="1990">' + c.about.founded + '</b><span>' + (D.lang === 'en' ? 'founded in Novo Hamburgo, RS' : 'fundada em Novo Hamburgo, RS') + '</span></div>' +
         c.about.text.map(function (t) { return '<p>' + t + '</p>'; }).join('') +
         '<div class="quote"><p>' + c.about.bannerText + '</p></div></div>' +
       '<figure class="reveal"><img src="' + M.servicesBanner + '" alt="" loading="lazy"></figure>' +
@@ -102,20 +113,20 @@
       '<article class="reveal"><h3>' + c.about.vision.title + '</h3><p>' + c.about.vision.text + '</p></article>' +
     '</div>' +
     '<div style="margin-top:clamp(56px,8vw,96px)"><div class="head reveal" style="margin-bottom:28px"><div><span class="eyebrow">' + c.values.eyebrow + '</span><h2 class="h2">' + c.values.title + '</h2></div></div>' +
-      '<ul class="values">' + c.values.items.map(function (v) { return '<li class="reveal"><h3>' + v.title + '</h3><p>' + v.text + '</p></li>'; }).join('') + '</ul></div>' +
+      '<ul class="values">' + c.values.items.map(function (v) { return '<li class="spot reveal"><h3>' + v.title + '</h3><p>' + v.text + '</p></li>'; }).join('') + '</ul></div>' +
     '<div style="margin-top:clamp(56px,8vw,96px)"><span class="eyebrow">' + c.about.techTitle + '</span>' +
-      '<ul class="tech">' + M.tech.map(function (t) { return '<li class="reveal"><img src="' + t.src + '" alt="" loading="lazy"><span>' + esc(t.name) + '</span></li>'; }).join('') + '</ul></div>' +
+      '<div class="loop loop--tech"><div class="loop__track">' + M.tech.map(function (t) { return '<span class="tchip"><img src="' + t.src + '" alt="' + esc(t.name) + '" loading="lazy"><span aria-hidden="true">' + esc(t.name) + '</span></span>'; }).join('') + '</div></div></div>' +
   '</div></section>' +
 
   '<section class="section" id="contato"><div class="wrap">' +
-    '<div class="cta reveal"><div><h2>' + c.help.title + '</h2><p>' + c.help.text + '</p></div>' +
-      '<div class="ctas"><a class="btn btn--mint" href="' + D.mailto(c.help.demoSubject) + '">' + c.help.demo + kit.arrow + '</a>' +
+    '<div class="cta reveal"><canvas class="cta__aurora" aria-hidden="true"></canvas><div><h2>' + c.help.title + '</h2><p>' + c.help.text + '</p></div>' +
+      '<div class="ctas"><a class="btn btn--star magnet" href="' + D.mailto(c.help.demoSubject) + '"><span class="star"></span><span class="btn__in">' + c.help.demo + kit.arrow + '</span></a>' +
       '<a class="btn btn--ghost" href="' + L.whatsapp + '" target="_blank" rel="noopener">' + c.help.whatsapp + '</a></div></div>' +
     '<div class="head reveal" style="margin-top:clamp(56px,8vw,96px)"><div><h2 class="h2">' + c.contact.title + '</h2></div><p class="lead">' + c.contact.text + '</p></div>' +
     '<div class="contact">' +
-      '<article class="reveal"><h3>' + c.contact.sales.title + '</h3><p>' + c.contact.sales.text + '</p><a href="mailto:' + L.emailSales + '">' + L.emailSales + '</a><a href="' + L.phoneHref + '">' + L.phone + '</a></article>' +
-      '<article class="reveal"><h3>' + c.contact.support.title + '</h3><p>' + c.contact.support.text + '</p><a href="mailto:' + L.emailSupport + '">' + L.emailSupport + '</a><a href="' + L.support + '" target="_blank" rel="noopener">' + c.nav.support + ' ↗</a></article>' +
-      '<article class="reveal"><h3>' + c.contact.location.title + '</h3><address>' + c.contact.location.lines.join('<br>') + '</address></article>' +
+      '<article class="spot reveal"><h3>' + c.contact.sales.title + '</h3><p>' + c.contact.sales.text + '</p><a href="mailto:' + L.emailSales + '">' + L.emailSales + '</a><a href="' + L.phoneHref + '">' + L.phone + '</a></article>' +
+      '<article class="spot reveal"><h3>' + c.contact.support.title + '</h3><p>' + c.contact.support.text + '</p><a href="mailto:' + L.emailSupport + '">' + L.emailSupport + '</a><a href="' + L.support + '" target="_blank" rel="noopener">' + c.nav.support + ' ↗</a></article>' +
+      '<article class="spot reveal"><h3>' + c.contact.location.title + '</h3><address>' + c.contact.location.lines.join('<br>') + '</address></article>' +
     '</div>' +
     '<div class="careers reveal"><figure><img src="' + M.team + '" alt="" loading="lazy"></figure>' +
       '<div><span class="eyebrow">' + c.careers.eyebrow + '</span><h3>' + c.careers.title + '</h3><p>' + c.careers.text + '</p><p>' + c.careers.text2 + '</p>' +
@@ -159,6 +170,17 @@
     }, { rootMargin: '0px 0px -8% 0px' });
     els.forEach(function (e, i) { e.style.transitionDelay = (i % 3) * 60 + 'ms'; io.observe(e); });
   }
+
+  /* componentes (React Bits, em JS puro) */
+  fx.blurText(document.querySelector('.hero h1'), 150);
+  document.querySelectorAll('.count').forEach(fx.countUp);
+  document.querySelectorAll('.loop').forEach(fx.logoLoop);
+  fx.spotlight('.spot');
+  fx.tilt('.tilt', 9);
+  fx.magnet('.magnet', 7);
+  fx.clickSpark('#4146ff');
+  fx.aurora(document.querySelector('.hero__aurora'), { colors: ['#3699ff', '#06ecb7', '#4146ff'], amplitude: 1.1, blend: .55, speed: .5 });
+  fx.aurora(document.querySelector('.cta__aurora'), { colors: ['#4146ff', '#06ecb7', '#3699ff'], amplitude: .9, blend: .6, speed: .4 });
 
   var r = D.takeScroll();
   if (r !== null && !isNaN(r)) addEventListener('load', function () { scrollTo(0, r * (document.documentElement.scrollHeight - innerHeight)); });
