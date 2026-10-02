@@ -78,9 +78,9 @@
     }).join('') + '</div>' +
   '</section>' +
 
-  '<div class="marquee" aria-hidden="true"><div class="marquee__row">' + marquee() + '</div></div>' +
+  '<div class="marquee" data-tone="dark" aria-hidden="true"><div class="marquee__row">' + marquee() + '</div></div>' +
 
-  '<section class="projects" id="projetos" aria-label="' + esc(plain(c.projects.title)) + '"><div class="projects__track">' +
+  '<section class="projects" data-tone="dark" id="projetos" aria-label="' + esc(plain(c.projects.title)) + '"><div class="projects__track">' +
     '<div class="projects__intro">' + roman(5, c.projects.eyebrow) + '<h2 class="d-xl split">' + W(c.projects.title) + '</h2></div>' +
     c.projects.items.map(function (p, i) {
       return '<article class="proj"><div class="proj__imgs"><div><img src="' + M.projects[i][0] + '" alt="' + esc(p.title) + '" loading="lazy"></div><div><img src="' + M.projects[i][1] + '" alt="" loading="lazy"></div></div>' +
@@ -102,7 +102,7 @@
       '<div class="about-cols reveal">' + c.about.text.map(function (t) { return '<p>' + t + '</p>'; }).join('') + '</div></div>' +
     '<div class="reveal-img"><div class="reveal-img__pin"><div class="reveal-img__frame"><img src="' + M.team + '" alt="" loading="lazy"></div>' +
       '<div class="reveal-img__txt"><h2 class="d-xl">' + c.about.bannerTitle + '</h2><p>' + c.about.bannerText + '</p></div></div></div>' +
-    '<div class="mv">' +
+    '<div class="mv" data-tone="dark">' +
       '<article><p class="label" style="color:inherit;opacity:.6">' + c.about.eyebrow + '</p><h3>' + c.about.mission.title + '</h3><p>' + c.about.mission.text + '</p></article>' +
       '<article><p class="label" style="color:inherit;opacity:.7">' + c.about.eyebrow + '</p><h3>' + c.about.vision.title + '</h3><p>' + c.about.vision.text + '</p></article>' +
     '</div>' +
@@ -121,7 +121,7 @@
 
   '<section class="doors" id="ajuda" aria-label="' + esc(c.help.title) + '">' +
     '<div class="doors__hint" aria-hidden="true">' + c.help.title + '</div>' +
-    '<div class="door door--l"></div><div class="door door--r"></div>' +
+    '<div class="door door--l" data-tone="dark"></div><div class="door door--r" data-tone="dark"></div>' +
     '<div class="doors__mark" aria-hidden="true">' + duettLogo({ markOnly: true }) + '</div>' +
     '<div class="doors__inner"><div><h2>' + c.help.title + '</h2><p>' + c.help.text + '</p><div class="ctas">' +
       '<a class="btn btn--mint" href="' + D.mailto(c.help.demoSubject) + '">' + c.help.demo + kit.arrow + '</a>' +
@@ -144,7 +144,7 @@
   '</section>' +
   '</main>' +
 
-  '<footer class="footer">' +
+  '<footer class="footer" data-tone="dark">' +
     '<div class="footer__grid">' +
       '<div><a class="brand" href="#top" aria-label="Duett Software">' + duettLogo({ word: '#f3f1ea' }) + '</a><div class="lines"><a href="mailto:' + L.emailSales + '">' + L.emailSales + '</a><a href="mailto:' + L.emailSupport + '">' + L.emailSupport + '</a><a href="' + L.phoneHref + '">' + L.phone + '</a></div></div>' +
       '<div><h4>' + c.footer.sitemap + '</h4><ul><li><a href="#top">' + c.nav.home + '</a></li><li><a href="#servicos">' + c.nav.services + '</a></li><li><a href="#contato">' + c.nav.contact + '</a></li></ul></div>' +
@@ -186,8 +186,30 @@
   if (matchMedia('(hover: hover)').matches && !RM) {
     var cx = gsap.quickTo(cur, 'x', { duration: .35, ease: 'power3' }), cy = gsap.quickTo(cur, 'y', { duration: .35, ease: 'power3' });
     addEventListener('mousemove', function (e) { cx(e.clientX); cy(e.clientY); });
-    document.addEventListener('mouseover', function (e) { cur.classList.toggle('big', !!e.target.closest('a, button, .row, .tech li')); });
+    document.addEventListener('mouseover', function (e) {
+      cur.classList.toggle('big', !!e.target.closest('a, button, .row, .tech li'));
+      cur.classList.toggle('on-dark', !!e.target.closest('[data-tone=dark], .hero__l, .chapters__media'));
+    });
   }
+
+  /* Cabeçalho: claro sobre papel, escuro sobre seções navy, transparente no hero */
+  /* lê o que está sob o cabeçalho (funciona mesmo com seções fixadas por pin) */
+  var topBar = $('.top'), toneQueued = false;
+  function tone() {
+    toneQueued = false;
+    var y = topBar.offsetHeight / 2, dark = false;
+    var stack = document.elementsFromPoint(innerWidth * .5, y);
+    for (var k = 0; k < stack.length; k++) {
+      if (topBar.contains(stack[k]) || stack[k].classList.contains('cursor')) continue;
+      dark = !!stack[k].closest('[data-tone=dark]');
+      break;
+    }
+    document.body.classList.toggle('h-dark', dark);
+  }
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: function () { if (!toneQueued) { toneQueued = true; requestAnimationFrame(tone); } }, onRefresh: tone });
+  document.body.classList.add('h-hero');
+  ScrollTrigger.create({ trigger: '.hero', start: 'top top', end: function () { return matchMedia('(min-width: 861px)').matches && !RM ? '+=' + innerHeight * .35 : 'bottom 60px'; },
+    onToggle: function (st) { document.body.classList.toggle('h-hero', st.isActive); }, onLeaveBack: function () { document.body.classList.add('h-hero'); } });
 
   ScrollTrigger.create({ start: 0, end: 'max', onUpdate: function (s) { $('.progress').style.transform = 'scaleX(' + s.progress.toFixed(4) + ')'; } });
 
@@ -215,22 +237,21 @@
        .from('.hero__seam', { scaleY: 0, duration: 1.4, ease: 'expo.inOut' }, .6)
        .from('.hero__txt--l .wi', { yPercent: 110, duration: 1.3, stagger: .07 }, .9)
        .from('.hero__txt--r .wi', { yPercent: -110, duration: 1.3, stagger: .07 }, .9)
-       .from('.hero__mark .hook-a', { x: -220, rotate: -30, opacity: 0, duration: 1.6 }, 1)
-       .from('.hero__mark .hook-b', { x: 220, rotate: 30, opacity: 0, duration: 1.6 }, 1)
+       .from('.hero__mark .hook-a', { x: 160, rotate: 16, opacity: 0, transformOrigin: '50% 50%', duration: 1.6 }, 1)
+       .from('.hero__mark .hook-b', { x: -160, rotate: -16, opacity: 0, transformOrigin: '50% 50%', duration: 1.6 }, 1)
        .from('.hero__sub, .hero__voice, .top, .versions', { opacity: 0, y: 12, duration: 1, stagger: .05 }, 1.4);
 
   mm.add('(min-width: 861px)', function () {
     /* Hero: as metades se afastam, o símbolo se encaixa, a página "abre" */
     gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=100%', scrub: 1, pin: true, anticipatePin: 1 } })
-      .to('.hero__mark', { top: '50%', scale: 1.5, duration: .5 }, 0)
+      .to('.hero__mark', { top: '42%', scale: 1.4, duration: .5 }, 0)
       .to('.hero__txt--l', { xPercent: -14, opacity: 0, duration: .6 }, .2)
       .to('.hero__txt--r', { xPercent: 14, opacity: 0, duration: .6 }, .2)
       .to('.hero__l', { xPercent: -100, duration: .7, ease: 'power2.in' }, .3)
       .to('.hero__r', { xPercent: 100, duration: .7, ease: 'power2.in' }, .3)
       .to('.hero__seam', { scaleY: 0, transformOrigin: 'bottom', duration: .4 }, .3)
-      .to('.hero__mark .hook-a', { fill: '#090039', duration: .3 }, .6)
-      .to('.hero__mark .hook-b', { fill: '#4146ff', duration: .3 }, .6)
-      .to('.hero__sub', { bottom: '42%', scale: 1.35, duration: .6 }, .4)
+      .to('.hero__mark .hook', { fill: '#4146ff', duration: .3 }, .6)
+      .to('.hero__sub', { bottom: '26%', scale: 1.25, duration: .6 }, .4)
       .to('.hero__voice', { opacity: 0, duration: .2 }, 0);
 
     /* Projetos: trilho horizontal com imagens em contra-movimento */
@@ -250,8 +271,8 @@
     gsap.timeline({ scrollTrigger: { trigger: '.doors', start: 'top top', end: '+=120%', scrub: 1, pin: true, anticipatePin: 1 } })
       .to('.door--l', { xPercent: 0, x: 0, duration: 1 }, 0)
       .to('.door--r', { xPercent: 0, x: 0, duration: 1 }, 0)
-      .fromTo('.doors__mark .hook-a', { x: -160, rotate: -30 }, { x: 0, rotate: 0, duration: 1 }, 0)
-      .fromTo('.doors__mark .hook-b', { x: 160, rotate: 30 }, { x: 0, rotate: 0, duration: 1 }, 0)
+      .fromTo('.doors__mark .hook-a', { x: 160, rotate: 16 }, { x: 0, rotate: 0, transformOrigin: '50% 50%', duration: 1 }, 0)
+      .fromTo('.doors__mark .hook-b', { x: -160, rotate: -16 }, { x: 0, rotate: 0, transformOrigin: '50% 50%', duration: 1 }, 0)
       .to('.doors__hint', { opacity: 0, duration: .3 }, .2)
       .to('.doors__inner', { opacity: 1, duration: .4 }, .8)
       .from('.doors__inner h2', { y: 60, duration: .5 }, .8);

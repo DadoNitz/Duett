@@ -289,29 +289,29 @@
        .from('.hero__photo img', { scale: 1.5, duration: 2.2 }, 0)
        .from('.hero__foot > *', { y: 30, opacity: 0, duration: 1.2, stagger: .1 }, .8)
        .from('.hud, .hud-low, .versions', { opacity: 0, duration: 1 }, 1)
-       .from('.hero__mark .hook-a', { x: -140, y: -80, rotate: -40, opacity: 0, duration: 1.8 }, .4)
-       .from('.hero__mark .hook-b', { x: 140, y: 80, rotate: 40, opacity: 0, duration: 1.8 }, .4);
+       .from('.hero__mark .hook-a', { x: 90, y: -50, rotate: 18, opacity: 0, transformOrigin: '50% 50%', duration: 1.8 }, .4)
+       .from('.hero__mark .hook-b', { x: -90, y: 50, rotate: -18, opacity: 0, transformOrigin: '50% 50%', duration: 1.8 }, .4);
 
   gsap.to('.hero__scan', { top: '100%', duration: 3.2, ease: 'none', repeat: -1, yoyo: true });
 
-  /* Hero fixo: as duas metades se encaixam e o símbolo vira a peça da esteira */
+  /* Hero fixo: o símbolo encolhe, sobe, corre pelo topo até a esteira e desce nela,
+     sem cruzar o título. As posições vêm do layout (offset*), não de transforms. */
+  var mark = $('.hero__mark'), part = $('.part');
+  function mc() { return { x: mark.offsetLeft + mark.offsetWidth / 2, y: mark.offsetTop + mark.offsetHeight / 2 }; }
+  function pc() { var r = part.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }
+  var topLane = function () { return Math.min(110, innerHeight * .13) - mc().y; };
   var heroTl = gsap.timeline({
     scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=110%', scrub: 1, pin: true, anticipatePin: 1, invalidateOnRefresh: true }
   });
-  heroTl.to('.hero__mark .hook-a', { x: -40, y: -26, rotate: -10, duration: .35 }, 0)
-        .to('.hero__mark .hook-b', { x: 40, y: 26, rotate: 10, duration: .35 }, 0)
-        .to('.hero__mark .hook', { x: 0, y: 0, rotate: 0, duration: .25, ease: 'back.out(3)' }, .35)
-        .to('.hero__title .ln:nth-child(odd)', { xPercent: -6, duration: 1 }, 0)
+  heroTl.to('.hero__title .ln:nth-child(odd)', { xPercent: -6, duration: 1 }, 0)
         .to('.hero__title .ln:nth-child(even)', { xPercent: 4, duration: 1 }, 0)
         .to('.hero__photo img', { scale: 1.32, duration: 1 }, 0)
-        .to('.hero__mark', {
-          x: function () { var r = $('.hero__mark').getBoundingClientRect(), p = $('.part').getBoundingClientRect(); return (p.left + p.width / 2) - (r.left + r.width / 2); },
-          y: function () { var r = $('.hero__mark').getBoundingClientRect(), p = $('.part').getBoundingClientRect(); return (p.top + p.height / 2) - (r.top + r.height / 2); },
-          scale: function () { return 22 / $('.hero__mark').offsetWidth; },
-          duration: .4, ease: 'power3.inOut'
-        }, .6)
-        .to('.hero__mark', { opacity: 0, duration: .02 }, 1)
-        .to('.part', { opacity: 1, duration: .02 }, 1)
+        .to(mark, { rotate: -12, duration: .3, ease: 'none' }, 0)
+        .to(mark, { y: topLane, rotate: 0, scale: function () { return 44 / mark.offsetWidth; }, duration: .2, ease: 'power2.inOut' }, .3)
+        .to(mark, { x: function () { return pc().x - mc().x; }, duration: .25, ease: 'power1.inOut' }, .5)
+        .to(mark, { y: function () { return pc().y - mc().y; }, scale: function () { return 22 / mark.offsetWidth; }, duration: .2, ease: 'power2.in' }, .75)
+        .to(mark, { opacity: 0, duration: .03 }, .95)
+        .to(part, { opacity: 1, duration: .03 }, .95)
         .to('.hero__title, .hero__foot', { opacity: .15, duration: .4 }, .6);
 
   /* Palavras de títulos */
@@ -389,9 +389,8 @@
   gsap.to('.part', { opacity: 0, scrollTrigger: { trigger: '.ship', start: 'center 50%', end: 'center 40%', scrub: true } });
 
   /* Footer: símbolo gigante se encaixa */
-  gsap.from('.footer__giant .hook-a', { x: -60, y: -30, rotate: -20, scrollTrigger: { trigger: '.footer__giant', start: 'top bottom', end: 'bottom bottom', scrub: 1 } });
-  gsap.from('.footer__giant .hook-b', { x: 60, y: 30, rotate: 20, scrollTrigger: { trigger: '.footer__giant', start: 'top bottom', end: 'bottom bottom', scrub: 1 } });
-  gsap.set('.footer__giant .hook', { transformBox: 'fill-box', transformOrigin: 'center' });
+  gsap.from('.footer__giant .hook-a', { x: 60, y: -30, rotate: 12, transformOrigin: '50% 50%', scrollTrigger: { trigger: '.footer__giant', start: 'top bottom', end: 'bottom bottom', scrub: 1 } });
+  gsap.from('.footer__giant .hook-b', { x: -60, y: 30, rotate: -12, transformOrigin: '50% 50%', scrollTrigger: { trigger: '.footer__giant', start: 'top bottom', end: 'bottom bottom', scrub: 1 } });
 
   /* Peça gira levemente com a velocidade */
   ScrollTrigger.create({ start: 0, end: 'max', onUpdate: function (s) { gsap.to('.part .box', { rotate: 45 + gsap.utils.clamp(-40, 40, s.getVelocity() / 40), duration: .4, overwrite: true }); } });

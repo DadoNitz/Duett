@@ -154,9 +154,8 @@ body.is-shipping .part .box { background: var(--mint); border-color: var(--navy)
   radial-gradient(60% 50% at 60% 40%, rgba(6, 236, 183, .22), transparent 70%); }
 .hero__scan { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--mint); box-shadow: 0 0 18px 2px rgba(6, 236, 183, .6); opacity: .8; z-index: 2; }
 .hero__coords { position: absolute; right: var(--gutter); top: 96px; z-index: 3; text-align: right; color: var(--muted); line-height: 2; }
-.hero__mark { position: absolute; right: 7vw; top: 30%; width: min(20vw, 300px); transform: translateY(-50%); z-index: 3; }
+.hero__mark { position: absolute; right: 7vw; top: 30%; width: min(20vw, 300px); margin-top: calc(min(20vw, 300px) * -.385); z-index: 3; transform-origin: 50% 50%; }
 .hero__mark svg { width: 100%; height: auto; overflow: visible; }
-.hero__mark .hook { transform-box: fill-box; transform-origin: center; }
 .hero__title { position: relative; z-index: 4; }
 .hero__title .ln { display: block; white-space: nowrap; }
 .hero__title .ln:nth-child(3) { color: var(--mint); }
@@ -394,7 +393,7 @@ body.is-shipping .versions a[aria-current] { background: var(--navy); color: var
   .hero { padding-top: 110px; }
   .hero__photo { width: 100%; height: 62%; opacity: .7; }
   .hero__photo::after { background: linear-gradient(0deg, var(--navy) 10%, transparent 70%); }
-  .hero__mark { right: 6vw; top: 17%; width: 30vw; }
+  .hero__mark { right: 6vw; top: 17%; width: 30vw; margin-top: -11.5vw; }
   .hero__title .ln { white-space: normal; }
   .hero__foot { flex-direction: column; align-items: start; }
   .hero__coords { display: none; }
