@@ -1,4 +1,4 @@
-/* Utilitários compartilhados pelas três versões. */
+/* Utilitários compartilhados pelas versões. */
 (function () {
   var D = window.DUETT;
 
@@ -6,7 +6,10 @@
     { id: 'jit', label: 'A', name: 'Just in Time' },
     { id: 'duet', label: 'B', name: D.lang === 'en' ? 'Two voices' : 'Duas vozes' },
     { id: 'blueprint', label: 'C', name: 'Blueprint' },
-    { id: 'direto', label: 'D', name: D.lang === 'en' ? 'Direct' : 'Direto' }
+    { id: 'direto', label: 'D', name: D.lang === 'en' ? 'Direct' : 'Direto' },
+    { id: 'bento', label: 'E', name: 'Bento' },
+    { id: 'claro', label: 'F', name: D.lang === 'en' ? 'Light' : 'Claro' },
+    { id: 'noite', label: 'G', name: D.lang === 'en' ? 'Night' : 'Noite' }
   ];
 
   var kit = {

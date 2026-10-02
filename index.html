@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Duett Software — versões</title>
-  <meta name="description" content="Propostas de site para a Duett Software: Just in Time, Duas vozes, Blueprint e Direto.">
+  <meta name="description" content="Propostas de site para a Duett Software: Just in Time, Duas vozes, Blueprint, Direto, Bento, Claro e Noite.">
   <meta name="theme-color" content="#07012f">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -63,19 +63,25 @@
       if (lang !== 'en' && lang !== 'pt') { try { lang = localStorage.getItem('duett-lang'); } catch (e) {} }
       if (lang !== 'en') lang = 'pt';
       var t = {
-        pt: { title: 'Uma marca, <em>quatro</em> experiências.', intro: 'Quatro propostas para o site da Duett Software. Mesmos textos, links e logo; três contam a história usando a rolagem como linha do tempo, e uma vai direto ao ponto.', open: 'Abrir versão', lang: 'EN', langLabel: 'Switch to English', htmlLang: 'pt-BR',
+        pt: { title: 'Uma marca, <em>sete</em> experiências.', intro: 'Sete propostas para o site da Duett Software. Mesmos textos, links e logo; A–C contam a história usando a rolagem como linha do tempo; D–G são objetivas, com rolagem normal, no azul da Duett.', open: 'Abrir versão', lang: 'EN', langLabel: 'Switch to English', htmlLang: 'pt-BR',
           v: [
             ['jit', 'A', 'Just in Time', 'A rolagem vira uma linha de produção. O símbolo da Duett se monta, vira a peça da esteira e passa por cada estação até a expedição.'],
             ['duet', 'B', 'Duas vozes', 'Editorial e claro. Indústria (serifa, fotografia) e software (sans, dados) correm lado a lado e se encontram no centro a cada capítulo.'],
             ['blueprint', 'C', 'Blueprint', 'Tudo começa como desenho técnico — fotos em traço, títulos em contorno, esquemas — e é renderizado em cor conforme você desce.'],
-            ['direto', 'D', 'Direto', 'Objetiva, no azul da Duett: rolagem normal, sem tela presa. Componentes no estilo React Bits — aurora, texto que surge do desfoque, contadores, esteira de logos, cards com luz e inclinação 3D.']
+            ['direto', 'D', 'Direto', 'Objetiva, no azul da Duett: rolagem normal, sem tela presa. Componentes no estilo React Bits — aurora, texto que surge do desfoque, contadores, esteira de logos, cards com luz e inclinação 3D.'],
+            ['bento', 'E', 'Bento', 'Tudo em blocos arredondados, estilo Apple/Linear: topo azul com aurora, números, serviços em grade com luz que segue o cursor e projetos em mosaico.'],
+            ['claro', 'F', 'Claro', 'Corporativa e branca, centrada: grade animada no topo, título que entra letra por letra, selo girando, projetos em pilha que troca sozinha e metodologia em etapas clicáveis.'],
+            ['noite', 'G', 'Noite', 'Escura e tecnológica: rede de partículas que reage ao mouse, título que se “decodifica”, faixa de serviços que acelera com a rolagem e linha do tempo que se preenche.']
           ] },
-        en: { title: 'One brand, <em>four</em> experiences.', intro: 'Four proposals for the Duett Software website. Same copy, links and logo; three tell the story using scroll as a timeline, and one gets straight to the point.', open: 'Open version', lang: 'PT', langLabel: 'Mudar para português', htmlLang: 'en',
+        en: { title: 'One brand, <em>seven</em> experiences.', intro: 'Seven proposals for the Duett Software website. Same copy, links and logo; A–C tell the story using scroll as a timeline; D–G are direct, with normal scrolling, in Duett blue.', open: 'Open version', lang: 'PT', langLabel: 'Mudar para português', htmlLang: 'en',
           v: [
             ['jit', 'A', 'Just in Time', 'Scrolling becomes a production line. The Duett mark assembles itself, becomes the part on the conveyor and passes every station on its way to shipping.'],
             ['duet', 'B', 'Two voices', 'Light and editorial. Industry (serif, photography) and software (sans, data) run side by side and meet in the middle at every chapter.'],
             ['blueprint', 'C', 'Blueprint', 'Everything starts as a technical drawing — line-art photos, outlined type, schematics — and renders into full colour as you scroll.'],
-            ['direto', 'D', 'Direct', 'Direct, in Duett blue: normal scrolling, no pinned screens. React Bits–style components — aurora, blur-in text, counters, logo loop, spotlight and 3D-tilt cards.']
+            ['direto', 'D', 'Direct', 'Direct, in Duett blue: normal scrolling, no pinned screens. React Bits–style components — aurora, blur-in text, counters, logo loop, spotlight and 3D-tilt cards.'],
+            ['bento', 'E', 'Bento', 'Everything in rounded blocks, Apple/Linear style: blue aurora hero, stats, services grid with cursor spotlight and a project mosaic.'],
+            ['claro', 'F', 'Light', 'Corporate, white and centred: animated grid hero, letter-by-letter headline, rotating seal, auto-swapping project stack and click-through methodology steps.'],
+            ['noite', 'G', 'Night', 'Dark and techy: particle network that reacts to the mouse, self-decrypting headline, a services band that speeds up with scrolling and a filling timeline.']
           ] }
       }[lang];
       document.documentElement.lang = t.htmlLang;

@@ -1,0 +1,96 @@
+/* Estilos base dos componentes (React Bits em CSS/JS puro) usados nas versões E–G.
+   Cada versão define as variáveis --fx-* e o próprio layout. */
+:root {
+  --fx-blue: #4146ff; --fx-sky: #3699ff; --fx-mint: #06ecb7; --fx-navy: #090039;
+  --fx-ease: cubic-bezier(.2, .7, .1, 1);
+}
+
+/* reveal */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--fx-ease), transform .7s var(--fx-ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* BlurText / Decrypted / SplitText */
+.bw, .sw { display: inline-block; }
+.sw { white-space: nowrap; }
+.sl { display: inline-block; }
+.grad-text, .grad .bw { background: linear-gradient(90deg, var(--fx-g1, var(--fx-mint)), var(--fx-g2, #b9fff0), var(--fx-g1, var(--fx-mint)), var(--fx-g3, #7cf7da), var(--fx-g1, var(--fx-mint))); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: fx-grad 6s linear infinite; }
+@keyframes fx-grad { to { background-position: 300% 0; } }
+
+/* ShinyText */
+.shiny { background: linear-gradient(120deg, transparent 40%, var(--fx-shine, #fff) 50%, transparent 60%) var(--fx-shine-base, rgba(255, 255, 255, .7)); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: fx-shine 3.2s linear infinite; }
+@keyframes fx-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
+/* StarBorder */
+.btn--star { position: relative; padding: 0 !important; border: 0 !important; background: transparent !important; overflow: hidden; border-radius: 999px; }
+.btn--star .star { position: absolute; inset: -2px; border-radius: inherit; background: conic-gradient(from var(--fx-a, 0deg), transparent 0 70%, #fff 80%, var(--fx-star, var(--fx-mint)) 88%, transparent 96%); animation: fx-spin 3s linear infinite; }
+.btn--star .btn__in { position: relative; margin: 2px; display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: inherit; background: var(--fx-star-bg, var(--fx-mint)); color: var(--fx-star-fg, var(--fx-navy)); font-weight: 600; transition: filter .25s; }
+.btn--star:hover .btn__in { filter: brightness(1.08); }
+@property --fx-a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes fx-spin { to { --fx-a: 360deg; } }
+.magnet { transition: transform .35s var(--fx-ease); will-change: transform; }
+
+/* Spotlight / MagicBento */
+.spot { position: relative; isolation: isolate; }
+.spot::before { content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .35s; background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--fx-spot, rgba(65, 70, 255, .10)), transparent 60%); }
+.spot::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; padding: 1px; opacity: 0; transition: opacity .35s; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), var(--fx-blue), rgba(6, 236, 183, .7) 40%, transparent 70%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.spot:hover::before, .spot:hover::after { opacity: 1; }
+
+/* TiltedCard */
+.tilt { perspective: 900px; }
+.tilt__in { position: relative; transition: transform .45s var(--fx-ease); transform-style: preserve-3d; will-change: transform; }
+.glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .35), transparent 55%); opacity: 0; transition: opacity .3s; }
+.tilt:hover .glare { opacity: 1; }
+
+/* LogoLoop */
+.loop { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.loop__track { display: flex; align-items: center; gap: clamp(48px, 6vw, 88px); width: max-content; animation: fx-loop 32s linear infinite; }
+.loop:hover .loop__track { animation-play-state: paused; }
+.loop__track > img { height: 34px; width: auto; filter: var(--fx-logo-filter, grayscale(1)); opacity: .7; transition: filter .25s, opacity .25s, transform .25s var(--fx-ease); }
+.loop__track > img:hover { filter: none; opacity: 1; transform: scale(1.08); }
+@keyframes fx-loop { to { transform: translateX(-50%); } }
+.loop--rev .loop__track { animation-direction: reverse; animation-duration: 48s; gap: 14px; }
+.tchip { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 9px; border-radius: 999px; background: var(--fx-chip-bg, #fff); border: 1px solid var(--fx-chip-line, #e6e8f2); font-size: 14px; font-weight: 500; white-space: nowrap; }
+.tchip .ti { width: 30px; height: 30px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+.tchip img { width: 20px; height: 20px; object-fit: contain; }
+
+/* CircularText */
+.circ { width: 100%; height: 100%; animation: fx-rot 18s linear infinite; overflow: visible; }
+.circ text { font-size: 15px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; fill: currentColor; }
+@keyframes fx-rot { to { transform: rotate(360deg); } }
+
+/* CardSwap */
+.swap { position: relative; }
+.swap__card { position: absolute; inset: 0; transition: transform .8s var(--fx-ease), opacity .8s var(--fx-ease); transform-origin: 50% 100%; cursor: pointer; }
+.swap__dots { display: flex; gap: 8px; }
+.swap__dot { width: 34px; height: 6px; border-radius: 6px; border: 0; padding: 0; background: var(--fx-dot, rgba(9, 0, 57, .15)); cursor: pointer; transition: background .3s, width .3s; }
+.swap__dot[aria-current=true] { background: var(--fx-blue); width: 54px; }
+
+/* Stepper */
+.stp__nav { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; position: relative; margin-bottom: 28px; }
+.stp__bar { position: absolute; left: 22px; right: 22px; top: 21px; height: 2px; background: var(--fx-step-line, #e6e8f2); z-index: 0; }
+.stp__bar i { position: absolute; inset: 0; background: var(--fx-blue); transform-origin: left; transform: scaleX(0); transition: transform .5s var(--fx-ease); }
+.stp__btn { position: relative; z-index: 1; display: grid; justify-items: center; gap: 10px; background: none; border: 0; cursor: pointer; padding: 0; font-size: 13px; font-weight: 600; color: var(--fx-step-muted, #626f92); text-align: center; }
+.stp__btn b { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--fx-step-bg, #fff); border: 2px solid var(--fx-step-line, #e6e8f2); color: inherit; transition: all .35s var(--fx-ease); }
+.stp__btn.done b { background: var(--fx-blue); border-color: var(--fx-blue); color: #fff; }
+.stp__btn[aria-current=true] { color: var(--fx-blue); }
+.stp__btn[aria-current=true] b { border-color: var(--fx-blue); color: var(--fx-blue); box-shadow: 0 0 0 6px rgba(65, 70, 255, .12); }
+.stp__panel[hidden] { display: none !important; }
+.stp__panel { animation: fx-fade .5s var(--fx-ease); }
+@keyframes fx-fade { from { opacity: 0; transform: translateY(10px); } }
+.stp__ctrl { display: flex; gap: 10px; margin-top: 24px; }
+.stp__ctrl button { border-radius: 999px; padding: 11px 18px; font-weight: 600; cursor: pointer; border: 1px solid var(--fx-step-line, #e6e8f2); background: var(--fx-step-bg, #fff); color: inherit; }
+.stp__ctrl button:disabled { opacity: .4; cursor: default; }
+.stp__ctrl .stp__next { background: var(--fx-blue); color: #fff; border-color: var(--fx-blue); }
+
+/* ScrollVelocity */
+.sv { overflow: hidden; }
+.sv__row { display: flex; width: max-content; white-space: nowrap; will-change: transform; }
+
+@media (max-width: 700px) {
+  .stp__nav { grid-template-columns: repeat(6, 44px); justify-content: space-between; }
+  .stp__btn span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .loop__track, .shiny, .grad .bw, .grad-text, .btn--star .star, .circ { animation: none !important; }
+}
