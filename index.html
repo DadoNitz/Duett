@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Duett Software — três versões</title>
+  <meta name="description" content="Três propostas de site para a Duett Software: Just in Time, Duas vozes e Blueprint.">
+  <meta name="theme-color" content="#07012f">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <style>
+    :root { --navy: #07012f; --ink: #f3f4ff; --muted: #9a9dc4; --line: rgba(243, 244, 255, .14); --mint: #06ecb7; --blue: #4146ff; --ease: cubic-bezier(.2, .7, .1, 1); }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; min-height: 100svh; background: var(--navy); color: var(--ink); font: 400 16px/1.55 'Space Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 24px clamp(16px, 4vw, 56px); }
+    header .brand { width: 120px; }
+    header svg { width: 100%; height: auto; display: block; }
+    .lang { font: 500 12px/1 'JetBrains Mono', monospace; letter-spacing: .12em; background: var(--mint); color: var(--navy); border: 0; border-radius: 999px; padding: 10px 14px; cursor: pointer; }
+    .lang:hover { background: var(--ink); }
+    .lang:focus-visible, a:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
+    main { padding: clamp(24px, 6vh, 64px) clamp(16px, 4vw, 56px) 64px; }
+    h1 { font-weight: 500; font-size: clamp(40px, 6.4vw, 108px); line-height: .94; letter-spacing: -.045em; margin: 0 0 20px; max-width: 14ch; }
+    h1 em { font-style: normal; color: var(--mint); }
+    .intro { color: var(--muted); max-width: 58ch; font-size: clamp(17px, 1.4vw, 20px); margin: 0 0 clamp(40px, 7vh, 80px); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .v { position: relative; display: flex; flex-direction: column; text-decoration: none; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: rgba(255, 255, 255, .02); transition: border-color .5s var(--ease), transform .6s var(--ease); }
+    .v:hover { border-color: var(--mint); transform: translateY(-6px); }
+    .v figure { margin: 0; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .v img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 1.2s var(--ease); }
+    .v:hover img { transform: scale(1.05); }
+    .v .body { padding: 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .v .k { font: 500 12px/1 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; }
+    .v .k b { color: var(--mint); font-weight: 500; }
+    .v h2 { font-weight: 500; font-size: clamp(26px, 2.4vw, 36px); letter-spacing: -.03em; line-height: 1; margin: 6px 0 0; }
+    .v p { color: var(--muted); margin: 0; }
+    .v .go { margin-top: auto; padding-top: 14px; display: inline-flex; gap: 10px; align-items: center; font-weight: 500; }
+    .v .go span { transition: transform .45s var(--ease); }
+    .v:hover .go span { transform: translateX(6px); }
+    footer { padding: 24px clamp(16px, 4vw, 56px) 40px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--line); }
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--mint); }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" id="brand" href="https://www.duettsoftware.com/" aria-label="Duett Software"></a>
+    <button class="lang" type="button" id="lang"></button>
+  </header>
+  <main>
+    <h1 id="title"></h1>
+    <p class="intro" id="intro"></p>
+    <div class="grid" id="grid"></div>
+  </main>
+  <footer><span>Copyright © 2026 Duett Software</span><span><a href="mailto:contato@duettsoftware.com">contato@duettsoftware.com</a> · <a href="tel:+555135248824">+55 51 35248824</a></span></footer>
+
+  <script src="assets/shared/logo.js"></script>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search).get('lang'), lang = q;
+      if (lang !== 'en' && lang !== 'pt') { try { lang = localStorage.getItem('duett-lang'); } catch (e) {} }
+      if (lang !== 'en') lang = 'pt';
+      var t = {
+        pt: { title: 'Uma marca, <em>três</em> experiências.', intro: 'Três propostas para o site da Duett Software. Mesmos textos, links e logo; cada uma conta a história de um jeito, usando a rolagem como linha do tempo.', open: 'Abrir versão', lang: 'EN', langLabel: 'Switch to English', htmlLang: 'pt-BR',
+          v: [
+            ['jit', 'A', 'Just in Time', 'A rolagem vira uma linha de produção. O símbolo da Duett se monta, vira a peça da esteira e passa por cada estação até a expedição.'],
+            ['duet', 'B', 'Duas vozes', 'Editorial e claro. Indústria (serifa, fotografia) e software (sans, dados) correm lado a lado e se encontram no centro a cada capítulo.'],
+            ['blueprint', 'C', 'Blueprint', 'Tudo começa como desenho técnico — fotos em traço, títulos em contorno, esquemas — e é renderizado em cor conforme você desce.']
+          ] },
+        en: { title: 'One brand, <em>three</em> experiences.', intro: 'Three proposals for the Duett Software website. Same copy, links and logo; each one tells the story differently, using scroll as its timeline.', open: 'Open version', lang: 'PT', langLabel: 'Mudar para português', htmlLang: 'en',
+          v: [
+            ['jit', 'A', 'Just in Time', 'Scrolling becomes a production line. The Duett mark assembles itself, becomes the part on the conveyor and passes every station on its way to shipping.'],
+            ['duet', 'B', 'Two voices', 'Light and editorial. Industry (serif, photography) and software (sans, data) run side by side and meet in the middle at every chapter.'],
+            ['blueprint', 'C', 'Blueprint', 'Everything starts as a technical drawing — line-art photos, outlined type, schematics — and renders into full colour as you scroll.']
+          ] }
+      }[lang];
+      document.documentElement.lang = t.htmlLang;
+      document.getElementById('brand').innerHTML = duettLogo();
+      document.getElementById('title').innerHTML = t.title;
+      document.getElementById('intro').textContent = t.intro;
+      var b = document.getElementById('lang');
+      b.textContent = t.lang; b.setAttribute('aria-label', t.langLabel);
+      b.addEventListener('click', function () {
+        var n = lang === 'en' ? 'pt' : 'en';
+        try { localStorage.setItem('duett-lang', n); } catch (e) {}
+        location.search = '?lang=' + n;
+      });
+      document.getElementById('grid').innerHTML = t.v.map(function (v) {
+        return '<a class="v" href="' + v[0] + '/?lang=' + lang + '"><figure><img src="assets/img/previews/' + v[0] + '.jpg" alt="" loading="lazy"></figure>' +
+          '<div class="body"><span class="k"><b>' + v[1] + '</b><span>' + v[0] + '/</span></span><h2>' + v[2] + '</h2><p>' + v[3] + '</p><span class="go">' + t.open + ' <span>→</span></span></div></a>';
+      }).join('');
+    })();
+  </script>
+</body>
+</html>
