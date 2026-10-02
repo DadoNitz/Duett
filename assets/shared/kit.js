@@ -5,7 +5,8 @@
   var VERSIONS = [
     { id: 'jit', label: 'A', name: 'Just in Time' },
     { id: 'duet', label: 'B', name: D.lang === 'en' ? 'Two voices' : 'Duas vozes' },
-    { id: 'blueprint', label: 'C', name: 'Blueprint' }
+    { id: 'blueprint', label: 'C', name: 'Blueprint' },
+    { id: 'direto', label: 'D', name: D.lang === 'en' ? 'Direct' : 'Direto' }
   ];
 
   var kit = {

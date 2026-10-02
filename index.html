@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Duett Software — três versões</title>
-  <meta name="description" content="Três propostas de site para a Duett Software: Just in Time, Duas vozes e Blueprint.">
+  <title>Duett Software — versões</title>
+  <meta name="description" content="Propostas de site para a Duett Software: Just in Time, Duas vozes, Blueprint e Direto.">
   <meta name="theme-color" content="#07012f">
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -23,7 +23,7 @@
     h1 { font-weight: 500; font-size: clamp(40px, 6.4vw, 108px); line-height: .94; letter-spacing: -.045em; margin: 0 0 20px; max-width: 14ch; }
     h1 em { font-style: normal; color: var(--mint); }
     .intro { color: var(--muted); max-width: 58ch; font-size: clamp(17px, 1.4vw, 20px); margin: 0 0 clamp(40px, 7vh, 80px); }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .v { position: relative; display: flex; flex-direction: column; text-decoration: none; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: rgba(255, 255, 255, .02); transition: border-color .5s var(--ease), transform .6s var(--ease); }
     .v:hover { border-color: var(--mint); transform: translateY(-6px); }
     .v figure { margin: 0; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--line); }
@@ -63,17 +63,19 @@
       if (lang !== 'en' && lang !== 'pt') { try { lang = localStorage.getItem('duett-lang'); } catch (e) {} }
       if (lang !== 'en') lang = 'pt';
       var t = {
-        pt: { title: 'Uma marca, <em>três</em> experiências.', intro: 'Três propostas para o site da Duett Software. Mesmos textos, links e logo; cada uma conta a história de um jeito, usando a rolagem como linha do tempo.', open: 'Abrir versão', lang: 'EN', langLabel: 'Switch to English', htmlLang: 'pt-BR',
+        pt: { title: 'Uma marca, <em>quatro</em> experiências.', intro: 'Quatro propostas para o site da Duett Software. Mesmos textos, links e logo; três contam a história usando a rolagem como linha do tempo, e uma vai direto ao ponto.', open: 'Abrir versão', lang: 'EN', langLabel: 'Switch to English', htmlLang: 'pt-BR',
           v: [
             ['jit', 'A', 'Just in Time', 'A rolagem vira uma linha de produção. O símbolo da Duett se monta, vira a peça da esteira e passa por cada estação até a expedição.'],
             ['duet', 'B', 'Duas vozes', 'Editorial e claro. Indústria (serifa, fotografia) e software (sans, dados) correm lado a lado e se encontram no centro a cada capítulo.'],
-            ['blueprint', 'C', 'Blueprint', 'Tudo começa como desenho técnico — fotos em traço, títulos em contorno, esquemas — e é renderizado em cor conforme você desce.']
+            ['blueprint', 'C', 'Blueprint', 'Tudo começa como desenho técnico — fotos em traço, títulos em contorno, esquemas — e é renderizado em cor conforme você desce.'],
+            ['direto', 'D', 'Direto', 'Objetiva e limpa: rolagem normal, sem efeitos de tela presa nem elementos decorativos. Conteúdo em blocos claros e “Agendar demonstração” sempre à mão.']
           ] },
-        en: { title: 'One brand, <em>three</em> experiences.', intro: 'Three proposals for the Duett Software website. Same copy, links and logo; each one tells the story differently, using scroll as its timeline.', open: 'Open version', lang: 'PT', langLabel: 'Mudar para português', htmlLang: 'en',
+        en: { title: 'One brand, <em>four</em> experiences.', intro: 'Four proposals for the Duett Software website. Same copy, links and logo; three tell the story using scroll as a timeline, and one gets straight to the point.', open: 'Open version', lang: 'PT', langLabel: 'Mudar para português', htmlLang: 'en',
           v: [
             ['jit', 'A', 'Just in Time', 'Scrolling becomes a production line. The Duett mark assembles itself, becomes the part on the conveyor and passes every station on its way to shipping.'],
             ['duet', 'B', 'Two voices', 'Light and editorial. Industry (serif, photography) and software (sans, data) run side by side and meet in the middle at every chapter.'],
-            ['blueprint', 'C', 'Blueprint', 'Everything starts as a technical drawing — line-art photos, outlined type, schematics — and renders into full colour as you scroll.']
+            ['blueprint', 'C', 'Blueprint', 'Everything starts as a technical drawing — line-art photos, outlined type, schematics — and renders into full colour as you scroll.'],
+            ['direto', 'D', 'Direct', 'Clean and to the point: normal scrolling, no pinned screens or decorative elements. Content in clear blocks, with “Book a demo” always at hand.']
           ] }
       }[lang];
       document.documentElement.lang = t.htmlLang;
