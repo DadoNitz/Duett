@@ -283,14 +283,16 @@
   var mm = gsap.matchMedia();
 
   /* Intro: palavras do título sobem; símbolo se monta */
+  var OPEN = { x: 12, y: 8, r: 14 }; /* afastamento das metades, em unidades do SVG */
   var intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
   intro.from('.hero__title .wi', { yPercent: 110, duration: 1.4, stagger: .06 }, .15)
        .from('.hero__photo', { clipPath: 'inset(0 0 100% 0)', duration: 1.6, ease: 'expo.inOut' }, 0)
        .from('.hero__photo img', { scale: 1.5, duration: 2.2 }, 0)
        .from('.hero__foot > *', { y: 30, opacity: 0, duration: 1.2, stagger: .1 }, .8)
        .from('.hud, .hud-low, .versions', { opacity: 0, duration: 1 }, 1)
-       .from('.hero__mark .hook-a', { x: 140, y: -80, rotate: 40, opacity: 0, transformOrigin: '50% 50%', duration: 1.8 }, .4)
-       .from('.hero__mark .hook-b', { x: -140, y: 80, rotate: -40, opacity: 0, transformOrigin: '50% 50%', duration: 1.8 }, .4);
+       /* o símbolo chega ABERTO: as metades param afastadas, esperando a rolagem */
+       .fromTo('.hero__mark .hook-a', { x: 60, y: -36, rotate: 34, opacity: 0 }, { x: OPEN.x, y: -OPEN.y, rotate: OPEN.r, opacity: 1, transformOrigin: '50% 50%', duration: 1.8 }, .4)
+       .fromTo('.hero__mark .hook-b', { x: -60, y: 36, rotate: -34, opacity: 0 }, { x: -OPEN.x, y: OPEN.y, rotate: -OPEN.r, opacity: 1, transformOrigin: '50% 50%', duration: 1.8 }, .4);
 
   gsap.to('.hero__scan', { top: '100%', duration: 3.2, ease: 'none', repeat: -1, yoyo: true });
 
@@ -306,10 +308,9 @@
   heroTl.to('.hero__title .ln:nth-child(odd)', { xPercent: -6, duration: 1 }, 0)
         .to('.hero__title .ln:nth-child(even)', { xPercent: 4, duration: 1 }, 0)
         .to('.hero__photo img', { scale: 1.32, duration: 1 }, 0)
-        /* as duas metades se afastam e voltam a se encaixar */
-        .fromTo('.hero__mark .hook-a', { x: 0, y: 0, rotate: 0 }, { x: 9, y: -6, rotate: 12, transformOrigin: '50% 50%', duration: .22, ease: 'power2.out', immediateRender: false }, 0)
-        .fromTo('.hero__mark .hook-b', { x: 0, y: 0, rotate: 0 }, { x: -9, y: 6, rotate: -12, transformOrigin: '50% 50%', duration: .22, ease: 'power2.out', immediateRender: false }, 0)
-        .to('.hero__mark .hook', { x: 0, y: 0, rotate: 0, duration: .14, ease: 'back.out(3)' }, .24)
+        /* com a rolagem, as extremidades se encontram e o símbolo fecha */
+        .fromTo('.hero__mark .hook-a', { x: OPEN.x, y: -OPEN.y, rotate: OPEN.r }, { x: 0, y: 0, rotate: 0, transformOrigin: '50% 50%', duration: .32, ease: 'back.out(1.6)', immediateRender: false }, 0)
+        .fromTo('.hero__mark .hook-b', { x: -OPEN.x, y: OPEN.y, rotate: -OPEN.r }, { x: 0, y: 0, rotate: 0, transformOrigin: '50% 50%', duration: .32, ease: 'back.out(1.6)', immediateRender: false }, 0)
         .to(mark, { y: topLane, scale: function () { return 44 / mark.offsetWidth; }, duration: .16, ease: 'power2.inOut' }, .4)
         .to(mark, { x: function () { return pc().x - mc().x; }, duration: .22, ease: 'power1.inOut' }, .56)
         .to(mark, { y: function () { return pc().y - mc().y; }, scale: function () { return 22 / mark.offsetWidth; }, duration: .17, ease: 'power2.in' }, .78)
