@@ -14,6 +14,15 @@ Recriação do site [duettsoftware.com](https://www.duettsoftware.com/) com os m
 
 `index.html` (raiz) é a página de escolha entre as versões.
 
+## Propaganda comercial
+
+`propaganda/` tem um comercial de 42 s feito em GSAP (palco 1920×1080): gancho → problema → logo → inventário por drone → WMS ponta a ponta → projetos e clientes → chamada final.
+
+- `propaganda/index.html`: abre no navegador com play/pausa e linha do tempo (barra de espaço pausa).
+- `propaganda/duett-propaganda.mp4`: o vídeo já renderizado (1080p, 30 fps, sem áudio).
+- `propaganda/render.mjs`: gera o MP4 de novo (`node propaganda/render.mjs`, com o servidor local rodando; precisa de Playwright e ffmpeg).
+- `propaganda/ROTEIRO-GEMINI.md`: roteiro com prompt mestre, 5 cenas de 8 s, narração e trilha para gerar a versão filmada no Gemini (Veo).
+
 ## Rodar localmente
 
 É um site estático, sem build:
