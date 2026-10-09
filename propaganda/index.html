@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duett — Propaganda</title>
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="viewport">
+  <div id="stage">
+
+    <!-- 1 · Gancho -->
+    <section class="scene s-hook">
+      <div class="grid-bg"></div>
+      <p class="kicker mono">Inventário · 07:42 · Doca 3</p>
+      <h1 class="hook-title">
+        <span class="line"><span class="w">Seu</span> <span class="w">estoque</span> <span class="w">está</span></span>
+        <span class="line"><span class="w">onde</span> <span class="w">o</span> <span class="w">sistema</span> <em class="w">diz?</em></span>
+      </h1>
+      <div class="mismatch mono">
+        <div class="mm-row"><span>Sistema</span><b class="mm-sys">1.248</b></div>
+        <div class="mm-row"><span>Contagem</span><b class="mm-real">1.248</b></div>
+        <div class="mm-diff">Divergência: <b class="mm-gap">0</b> caixas</div>
+      </div>
+    </section>
+
+    <!-- 2 · Problema -->
+    <section class="scene s-pain">
+      <ul class="pain-list">
+        <li><span>Contagem manual</span><i></i></li>
+        <li><span>Planilhas desencontradas</span><i></i></li>
+        <li><span>Operação parada por dias</span><i></i></li>
+      </ul>
+      <p class="pain-q">Existe um jeito <em>melhor.</em></p>
+    </section>
+
+    <!-- 3 · Marca -->
+    <section class="scene s-brand">
+      <div class="wipe"></div>
+      <div class="brand-logo" id="brandLogo"></div>
+      <p class="brand-tag">Inventário inteligente&nbsp;+&nbsp;WMS</p>
+    </section>
+
+    <!-- 4 · Inventário por drone -->
+    <section class="scene s-drone">
+      <div class="photo"><img src="../assets/img/home/home-banner-main.jpg" alt=""><div class="dets" id="dets"></div></div>
+      <div class="scanline"></div>
+      <div class="hud">
+        <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+        <div class="hud-top mono"><span class="rec"></span>DRONE 02 · CORREDOR A · ALT 6,4 m</div>
+      </div>
+      <div class="drone-copy">
+        <p class="eyebrow mono">Inventário</p>
+        <h2>Inventário por drone.<br><em>Em minutos.</em></h2>
+        <div class="stats">
+          <div class="stat"><b class="num" data-to="1248">0</b><span>caixas detectadas</span></div>
+          <div class="stat"><b><span class="num" data-to="99.7" data-dec="1">0</span>%</b><span>acurácia</span></div>
+        </div>
+        <div class="occ">
+          <div class="occ-head"><span>Nível de ocupação</span><b><span class="num" data-to="87">0</span>%</b></div>
+          <div class="occ-bar"><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · WMS -->
+    <section class="scene s-wms">
+      <div class="grid-bg light"></div>
+      <p class="eyebrow mono center">WMS</p>
+      <h2 class="wms-title">Do recebimento à expedição, <em>ponta a ponta.</em></h2>
+      <div class="flow">
+        <svg class="flow-line" viewBox="0 0 1600 20" preserveAspectRatio="none"><line x1="0" y1="10" x2="1600" y2="10"/><line class="prog" x1="0" y1="10" x2="1600" y2="10"/></svg>
+        <div class="crate"><span>CX-0482</span></div>
+        <div class="node" data-i="0"><div class="dot"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z M3 7l9 4 9-4 M12 11v10"/></svg></div><h3>Recebimento</h3><p>NF conferida</p></div>
+        <div class="node" data-i="1"><div class="dot"><svg viewBox="0 0 24 24"><path d="M4 21V5h16v16 M4 11h16 M4 16h16 M12 3v4"/></svg></div><h3>Putaway</h3><p>Endereço A-12-03</p></div>
+        <div class="node" data-i="2"><div class="dot"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8 M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div><h3>Picking</h3><p>Rota otimizada</p></div>
+        <div class="node" data-i="3"><div class="dot"><svg viewBox="0 0 24 24"><path d="M3 8h18v12H3z M3 8l3-5h12l3 5 M10 12h4"/></svg></div><h3>Packing</h3><p>Etiqueta impressa</p></div>
+        <div class="node" data-i="4"><div class="dot"><svg viewBox="0 0 24 24"><path d="M1 6h13v10H1z M14 9h5l4 4v3h-9 M6 19a2 2 0 1 0 0-.1 M18 19a2 2 0 1 0 0-.1"/></svg></div><h3>Shipping</h3><p>Expedido às 14:02</p></div>
+      </div>
+      <div class="wms-foot mono"><span>Pedidos/hora <b class="num" data-to="342">0</b></span><span>Erros de separação <b>0</b></span><span>Rastreabilidade <b>100%</b></span></div>
+    </section>
+
+    <!-- 6 · Prova -->
+    <section class="scene s-proof">
+      <h2 class="proof-title">Tecnologia que já roda na <em>indústria.</em></h2>
+      <div class="cards">
+        <figure class="card"><img src="../assets/img/projects/sequenciamento/01.png" alt=""><figcaption>Produção Sequenciada</figcaption></figure>
+        <figure class="card"><img src="../assets/img/projects/almoxarifado/01.png" alt=""><figcaption>Controle de Almoxarifado</figcaption></figure>
+        <figure class="card"><img src="../assets/img/projects/etiquetas/01.png" alt=""><figcaption>Etiquetagem e Expedição</figcaption></figure>
+      </div>
+      <div class="logos"><div class="logos-track" id="logos"></div></div>
+    </section>
+
+    <!-- 7 · CTA -->
+    <section class="scene s-cta">
+      <div class="aurora"><i></i><i></i><i></i></div>
+      <div class="cta-logo" id="ctaLogo"></div>
+      <h2 class="cta-title">Seu armazém, <em>em tempo real.</em></h2>
+      <div class="cta-btn">Agende uma demonstração</div>
+      <p class="cta-contact mono">duettsoftware.com &nbsp;·&nbsp; contato@duettsoftware.com &nbsp;·&nbsp; +55 51 3524-8824</p>
+    </section>
+
+  </div>
+</div>
+
+<div id="controls">
+  <button id="play" aria-label="Pausar">❚❚</button>
+  <button id="restart" aria-label="Recomeçar">↺</button>
+  <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="Linha do tempo">
+  <span id="time" class="mono">0,0 s</span>
+</div>
+
+<script src="../assets/vendor/gsap.min.js"></script>
+<script src="../assets/shared/logo.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
